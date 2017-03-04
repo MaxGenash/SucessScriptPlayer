@@ -412,7 +412,13 @@ textarea {
     *Page styles
 */
 
-.wrapper {}
+.loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
 
 .content-wrapper {
     padding: 20px;
@@ -421,11 +427,13 @@ textarea {
 }
 
 .video-wrapper {
+    position: relative;
     flex: 1;
     padding: 10px;
 }
 
 .recomendations-wrapper {
+    position: relative;
     padding: 10px;
 }
 
@@ -511,6 +519,10 @@ textarea {
     line-height: 1em;
     padding-top: 0.25em;
     overflow: hidden;
+}
+
+.post-link:hover {
+    color: #4671c5;
 }
 
 .comments-wrapper {
