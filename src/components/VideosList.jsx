@@ -7,20 +7,20 @@ export default class List extends Component {
       <div>
         <div className='row'>
           <div className='col-md-12'>
-            <h3> Список жанров </h3>
+            <h3> Список відео </h3>
           </div>
         </div>
         <div className='row'>
           <div className='col-md-12'>
             <ul className='list'>
               <li className='list__item'>
-                <Link to='/genre/house/'>House</Link>
+                <Link to='/videos/video/golos'>відео 1</Link>
               </li>
               <li className='list__item'>
-                <Link to='/genre/dnb/'>Drum and bass</Link>
+                <Link to='/videos/video/kvartal'>відео 2</Link>
               </li>
               <li className='list__item'>
-                <Link to='/genre/hip-hop/'>Hip-hop</Link>
+                <Link to='/videos/video/liga_smihu'>відео 3</Link>
               </li>
             </ul>
           </div>

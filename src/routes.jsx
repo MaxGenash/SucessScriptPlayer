@@ -1,25 +1,20 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute, IndexRedirect } from 'react-router'
 
-import App from './containers/App'
-import Admin from './components/Admin'
-import List from './components/List'
-import Genre from './components/Genre'
-import Release from './components/Release'
-import Home from './components/Home'
-import Login from './components/Login'
-import NotFound from './components/NotFound'
+import App from './containers/App.jsx'
+import MainLayout from './components/MainLayout.jsx'
+import VideosList from './components/VideosList.jsx'
+import VideoPage from './components/VideoPage.jsx'
+import NotFound from './components/NotFound.jsx'
 
 export const routes = (
     <div>
         <Route path='/' component={App}>
-            <IndexRoute component={Home} />
-            <Route path='/admin' component={Admin} onEnter={Admin.onEnter}/>
-            <Route path='/genre/:genre' component={Genre}>
-                <Route path='/genre/:genre/:release' component={Release} />
+            <IndexRedirect to='/videos/video/golos' />
+            <Route component={MainLayout}>
+                <Route path='/videos/video/:videoid' component={VideoPage} />
+                <Route path='/videos/list' component={VideosList} />
             </Route>
-            <Route path='/list' component={List} />
-            <Route path='/login' component={Login} />
         </Route>
         <Route path='*' component={NotFound} />
     </div>
