@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 export default function Header () {
     return (
-        <div className='header'>
-            Тут шапка
-        </div>
+        <header className="header">
+            <h1 className="header-title">SuccessScriptPlayer</h1>
+        </header>
     );
 }

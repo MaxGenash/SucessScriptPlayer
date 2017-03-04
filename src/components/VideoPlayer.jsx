@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import videojs from 'video.js'
 
-export default class VideoPage extends Component {
+export default class VideoPlayer extends Component {
     componentDidMount() {
         videojs('ss-player__video', {
             controls: true,
@@ -11,13 +11,11 @@ export default class VideoPage extends Component {
     }
 
     render() {
-        let { caption, videoSrc,imgPoster } = this.props;
+        let { videoSrc,imgPoster } = this.props;
         return (
-            <div className='ss-player'>
-                <video id="ss-player__video" poster={imgPoster} src={videoSrc} width="640" height="480" >
-                    <p className="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" className="vjs-hidden" hidden="hidden">supports HTML5 video</a></p>
-                </video>
-            </div>
+            <video id="ss-player__video" className="video-js vjs-default-skin" poster={imgPoster} src={videoSrc} width="100%" height="500">
+                <p className="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" className="vjs-hidden" hidden="hidden">supports HTML5 video</a></p>
+            </video>
         )
     }
 }
