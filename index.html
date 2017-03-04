@@ -8,24 +8,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.css">
+        <link href="./css/video-js.min.css" rel="stylesheet">
+
         <link rel="stylesheet" href="css/main.css">
+
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <h1>Hello world! This is HTML5 Boilerplate.</h1>
 
+        <video id="preview-player_html5_api" class="vjs-tech" poster="./img/golos_screen.jpg" src="./golos.mp4" loop=""  controls preload="auto" width="640" height="480" >
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" class="vjs-hidden" hidden="hidden">supports HTML5 video</a></p>
+        </video>
 
-
-
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="./js/vendor/video.min.js"></script>
+        <script src="./js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="./js/plugins.js"></script>
+        <script src="./js/main.js"></script>
     </body>
 </html>
