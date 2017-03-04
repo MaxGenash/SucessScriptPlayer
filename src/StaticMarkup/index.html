@@ -1,26 +1,68 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>SuccessScriptPlayer</title>
-        <meta name="description" content="SuccessScriptPlayer">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="./normalize.css">
-        <link href="./video-js.min.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>SuccessScriptPlayer</title>
+    <meta name="description" content="SuccessScriptPlayer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./normalize.css">
+    <link href="./video-js.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+</head>
 
-        <link rel="stylesheet" href="./main.css">
-    </head>
-    <body>
-        <!-- Add your site or application content here -->
-        <h1>Hello world! This is HTML5 Boilerplate.</h1>
+<body>
+    <header class="header">
+        <h1 class="header-title">SS player</h1>
+    </header>
+    <section class="content-wrapper">
+        <div class="video-wrapper">
+            <video id="ss-player__video" class="video-js vjs-default-skin" poster="./golos_screen.jpg" src="../../kvartal.mp4" width="100%" height="500">
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" class="vjs-hidden" hidden="hidden">supports HTML5 video</a></p>
+            </video>
+            <section class="comments-wrapper">
+                <div class="comments">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque facilis voluptatibus officiis distinctio itaque id tempore perferendis reprehenderit quis autem necessitatibus libero, alias tenetur voluptatem tempora, recusandae! Veritatis vel, doloribus.
+                </div>
+            </section>
+        </div>
+        <div class="recomendations-wrapper">
+            <div class="recomendation-videos">
+                <h2 class="recomendation-title">Популярні зараз:</h2>
+                <ul class="videos-list">
+                    <li>
+                        <a href="" class="video-thumb">
+                            <img src="./golos_screen.jpg" alt="video" class="video-tumb-img">
+                            <div class="video-thumb-cont">
+                                <span class="video-thumb-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sit soluta, aperiam. Eveniet incidunt fuga, blanditiis quas quos animi mollitia corporis, dolorum ea quaerat magnam optio libero dolorem. Esse, optio.</span>
+                                <span class="video-thumb-descr"><i class="fa fa-eye fa-1" aria-hidden="true"></i> <span class="video-thumb-num">1700чел.</span></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="recomendation-videos">
+                <h2 class="recomendation-title">Рекомендації зірок:</h2>
+                <ul class="videos-list">
+                    <li>
+                        <a href="" class="video-thumb">
+                            <img src="./golos_screen.jpg" alt="video" class="video-tumb-img">
+                            <div class="video-thumb-cont">
+                                <span class="video-thumb-star"><div class="avatar-wrap"><img class="video-thumb-avatar" src="./potap.jpeg" alt=""></div><span class="video-thumb-star-name">ПОтап sdfhsdfsdfsdfsdf</span></span>
+                                <span class="video-thumb-post">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro commodi laboriosam, eos sapiente vitae doloribus, nemo expedita architecto odit deleniti, nulla aspernatur at animi error incidunt iure dicta ad tempora?</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <h1 class="footer-title">SS team</h1>
+    </footer>
+    <script src="./video.min.js"></script>
+    <script src="./main.js"></script>
+</body>
 
-        <video id="ss-player__video" poster="./golos_screen.jpg" src="../../golos.mp4" width="640" height="480" >
-            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank" class="vjs-hidden" hidden="hidden">supports HTML5 video</a></p>
-        </video>
-
-        <script src="./video.min.js"></script>
-        <script src="./main.js"></script>
-    </body>
 </html>

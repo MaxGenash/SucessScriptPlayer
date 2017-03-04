@@ -1,20 +1,32 @@
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
 
+
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+
+@font-face {
+    font-family: "HelveticaRegular";
+    src: url("./fonts/HelveticaRegular.eot");
+    src: url("./fonts/HelveticaRegular.eot?#iefix")format("embedded-opentype"), url("./fonts/HelveticaRegular.woff") format("woff"), url("./fonts/HelveticaRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
 
 html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
+    font-family: 'HelveticaRegular';
 }
+
 
 /*
  * Remove text-shadow in selection highlight:
@@ -34,6 +46,7 @@ html {
     text-shadow: none;
 }
 
+
 /*
  * A better looking default horizontal rule
  */
@@ -46,6 +59,16 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
+
+li {
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 
 /*
  * Remove the gap between audio, canvas, iframes,
@@ -62,6 +85,7 @@ video {
     vertical-align: middle;
 }
 
+
 /*
  * Remove default fieldset styles.
  */
@@ -72,6 +96,12 @@ fieldset {
     padding: 0;
 }
 
+div,
+section {
+    box-sizing: border-box;
+}
+
+
 /*
  * Allow only vertical resizing of textareas.
  */
@@ -79,6 +109,7 @@ fieldset {
 textarea {
     resize: vertical;
 }
+
 
 /* ==========================================================================
    Browser Upgrade Prompt
@@ -91,29 +122,16 @@ textarea {
     padding: 0.2em 0;
 }
 
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
+
 
 /*
  * Hide visually and from screen readers
@@ -122,6 +140,7 @@ textarea {
 .hidden {
     display: none !important;
 }
+
 
 /*
  * Hide only visually, but have it available for screen readers:
@@ -139,6 +158,7 @@ textarea {
     width: 1px;
 }
 
+
 /*
  * Extends the .visuallyhidden class to allow the element
  * to be focusable when navigated to via the keyboard:
@@ -155,6 +175,7 @@ textarea {
     width: auto;
 }
 
+
 /*
  * Hide visually and from screen readers, but maintain layout
  */
@@ -162,6 +183,7 @@ textarea {
 .invisible {
     visibility: hidden;
 }
+
 
 /*
  * Clearfix: contain floats
@@ -177,13 +199,16 @@ textarea {
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
 }
 
 .clearfix:after {
     clear: both;
 }
+
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
@@ -196,11 +221,12 @@ textarea {
 }
 
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
+
 
 /* ==========================================================================
    Print styles.
@@ -215,68 +241,325 @@ textarea {
     *:first-letter,
     *:first-line {
         background: transparent !important;
-        color: #000 !important; /* Black prints faster:
+        color: #000 !important;
+        /* Black prints faster:
                                    http://www.sanbeiji.com/archives/953 */
         box-shadow: none !important;
         text-shadow: none !important;
     }
-
     a,
     a:visited {
         text-decoration: underline;
     }
-
     a[href]:after {
         content: " (" attr(href) ")";
     }
-
     abbr[title]:after {
         content: " (" attr(title) ")";
     }
-
     /*
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
-
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
         content: "";
     }
-
     pre,
     blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
     }
-
     /*
      * Printing Tables:
      * http://css-discuss.incutio.com/wiki/Printing_Tables
      */
-
     thead {
         display: table-header-group;
     }
-
     tr,
     img {
         page-break-inside: avoid;
     }
-
     img {
         max-width: 100% !important;
     }
-
     p,
     h2,
     h3 {
         orphans: 3;
         widows: 3;
     }
-
     h2,
     h3 {
         page-break-after: avoid;
     }
+}
+
+
+/* 
+    *Player styles 
+*/
+
+
+/*
+  Player Skin Designer for Video.js
+  http://videojs.com
+
+  To customize the player skin edit 
+  the CSS below. Click "details" 
+  below to add comments or questions.
+  This file uses some SCSS. Learn more  
+  at http://sass-lang.com/guide)
+
+  This designer can be linked to at:
+  http://codepen.io/heff/pen/EarCt/left/?editors=010
+*/
+
+.video-js {
+    /* The base font size controls the size of everything, not just text.
+     All dimensions use em-based sizes so that the scale along with the font size.
+     Try increasing it to 15px and see what happens. */
+    font-size: 10px;
+    /* The main font color changes the ICON COLORS as well as the text */
+    color: #fff;
+    width: 100%;
+}
+
+
+/* The "Big Play Button" is the play button that shows before the video plays.
+   To center it set the align values to center and middle. The typical location
+   of the button is the center, but there is trend towards moving it to a corner
+   where it gets out of the way of valuable content in the poster image.*/
+
+.vjs-default-skin .vjs-big-play-button {
+    /* The font size is what makes the big play button...big. 
+     All width/height values use ems, which are a multiple of the font size.
+     If the .video-js font-size is 10px, then 3em equals 30px.*/
+    font-size: 3em;
+    /* We're using SCSS vars here because the values are used in multiple places.
+     Now that font size is set, the following em values will be a multiple of the
+     new font size. If the font-size is 3em (30px), then setting any of
+     the following values to 3em would equal 30px. 3 * font-size. */
+    /* 1.5em = 45px default */
+    line-height: 1.5em;
+    height: 1.5em;
+    width: 3em;
+    /* 0.06666em = 2px default */
+    border: 0.06666em solid #fff;
+    /* 0.3em = 9px default */
+    border-radius: 0.3em;
+    /* Align top left. 0.5em = 15px default */
+    left: 50%;
+    top: 50%;
+    margin: -.7em 0 0 -1.5em;
+}
+
+
+/* The default color of control backgrounds is mostly black but with a little
+   bit of blue so it can still be seen on all-black video frames, which are common. */
+
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+    /* IE8 - has no alpha support */
+    background-color: #2B333F;
+    /* Opacity: 1.0 = 100%, 0.0 = 0% */
+    background-color: rgba(43, 51, 63, 0.7);
+}
+
+
+/* Slider - used for Volume bar and Progress bar */
+
+.video-js .vjs-slider {
+    background-color: #73859f;
+    background-color: rgba(115, 133, 159, 0.5);
+}
+
+
+/* The slider bar color is used for the progress bar and the volume bar
+   (the first two can be removed after a fix that's coming) */
+
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+    background: #fff;
+}
+
+
+/* The main progress bar also has a bar that shows how much has been loaded. */
+
+.video-js .vjs-load-progress {
+    /* For IE8 we'll lighten the color */
+    background: #bfc7d3;
+    /* Otherwise we'll rely on stacked opacities */
+    background: rgba(115, 133, 159, 0.5);
+}
+
+
+/* The load progress bar also has internal divs that represent
+   smaller disconnected loaded time ranges */
+
+.video-js .vjs-load-progress div {
+    /* For IE8 we'll lighten the color */
+    background: white;
+    /* Otherwise we'll rely on stacked opacities */
+    background: rgba(115, 133, 159, 0.75);
+}
+
+
+/* 
+    *Page styles
+*/
+
+.wrapper {}
+
+.content-wrapper {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-wrapper {
+    flex: 1;
+    padding: 10px;
+}
+
+.recomendations-wrapper {
+    padding: 10px;
+}
+
+.recomendation-title {
+    margin: 0;
+}
+
+.recomendation-videos {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.videos-list {
+    padding: 0;
+}
+
+.video-thumb {
+    display: flex;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.video-tumb-img {
+    height: 6.25em;
+}
+
+.video-thumb-cont {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.25em;
+    width: 12.5em;
+    height: 6.25em;
+}
+
+.video-thumb-title {
+    max-height: 3em;
+    line-height: 1em;
+    overflow: hidden;
+}
+
+.video-thumb-descr {
+    height: 3em;
+    line-height: 1em;
+    padding-top: 0.25em;
+}
+
+.video-thumb-star {
+    max-height: 2em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.video-thumb-star-name {
+    line-height: 2em;
+}
+
+.video-thumb-avatar {
+    height: 100%;
+}
+
+.avatar-wrap {
+    display: inline-block;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 0.25em;
+}
+
+.video-thumb-post {
+    height: 4em;
+    line-height: 1em;
+    padding-top: 0.25em;
+    overflow: hidden;
+}
+
+.comments-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    /*margin: auto;*/
+}
+
+.comments {
+    max-height: 500px;
+    width: 500px;
+    overflow-y: auto;
+}
+
+.header {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -js-display: flex;
+    display: flex;
+    background-color: #212121;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    z-index: 100;
+    height: 92px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 72px;
+    }
+}
+
+.header-title {
+    color: #ffffff;
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    background-color: #212121;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    z-index: 100;
+    height: 150px;
+}
+
+.footer-title {
+    color: #ffffff;
+    margin-right: auto;
+    margin-left: 10px;
 }
