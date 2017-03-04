@@ -546,12 +546,12 @@ textarea {
     padding-left: 20px;
 }
 
-.toggle-icon {
+/*.toggle-icon {
     position: absolute;
     left: 0;
     top: 50%;
     transform: translate(0, -50%);
-}
+}*/
 
 .list-info {
     max-height: 0;
