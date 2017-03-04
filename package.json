@@ -1,0 +1,12 @@
+{
+  "name": "sucess-script-player",
+  "authors": [
+    "Max Genash (https://github.com/MaxGenash)"
+  ],
+  "version": "0.0.1",
+  "description": "an awesome player by SeccessScript tesm",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
+}
