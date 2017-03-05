@@ -13,7 +13,6 @@ export const routes = (
             <IndexRedirect to='/videos/video/golos' />
             <Route component={MainLayout}>
                 <Route path='/videos/video/:videoid' component={VideoPage} />
-                <Route path='/videos/list' component={VideosList} />
             </Route>
         </Route>
         <Route path='*' component={NotFound} />

@@ -3,7 +3,8 @@ import VideoColumn from './VideoColumn.jsx'
 import RecomendationsCol from './RecomendationsCol.jsx'
 import {
     URI_GET_VIDEO_INFO,
-    URI_GET_FEATURED_VIDEOS
+    URI_GET_FEATURED_VIDEOS,
+    URI_GET_CELEBRITIES_RECOMENDATIONS
 } from '../constants/API_URIs'
 
 export default class VideoPage extends Component {
@@ -70,26 +71,28 @@ export default class VideoPage extends Component {
 
             ],
 
+            getCelebritiesRecomendationsError: "",
+            isGettingCelebritiesRecomendations: true,
             celebritiesRecomendations: [
-                {
-                    previewUri: "https://images.ovva.tv/media/images/543/e7f/b33/543e7fb33c0056175cdee83ebf047b45.jpeg",
-                    celebrityName: "Джамала",
-                    comentText: "Дивіться новий випуск голоса країни та голосуйте за моїх учасників 💋💋💋",
-                    celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
-                    postDate: "04.03.2017",
-                    originalPostLink: "https://vk.com/wall59654341_6826",
-                    key: "golos"
-                },
-                {
-                    previewUri: "https://images.ovva.tv/media/images/fff/45d/647/fff45d647b4367df529a5270c7c8d5b6.jpeg",
-                    title: "Лига Смеха 2016 - второй фестиваль, Одесса, часть первая",
-                    celebrityName: "Володимир Зеленський",
-                    comentText: "Сьогодні подивився новий випуск ліги сміху - ото ржака 😆😆😆",
-                    celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
-                    postDate: "02.03.2017",
-                    originalPostLink: "https://vk.com/wall59654341_6826",
-                    key: "ligaSmihu"
-                }
+                // {
+                //     previewUri: "https://images.ovva.tv/media/images/543/e7f/b33/543e7fb33c0056175cdee83ebf047b45.jpeg",
+                //     celebrityName: "Джамала",
+                //     comentText: "Дивіться новий випуск голоса країни та голосуйте за моїх учасників 💋💋💋",
+                //     celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
+                //     postDate: "04.03.2017",
+                //     originalPostLink: "https://vk.com/wall59654341_6826",
+                //     key: "golos"
+                // },
+                // {
+                //     previewUri: "https://images.ovva.tv/media/images/fff/45d/647/fff45d647b4367df529a5270c7c8d5b6.jpeg",
+                //     title: "Лига Смеха 2016 - второй фестиваль, Одесса, часть первая",
+                //     celebrityName: "Володимир Зеленський",
+                //     comentText: "Сьогодні подивився новий випуск ліги сміху - ото ржака 😆😆😆",
+                //     celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
+                //     postDate: "02.03.2017",
+                //     originalPostLink: "https://vk.com/wall59654341_6826",
+                //     key: "ligaSmihu"
+                // }
             ],
 
             expandMomentsList: false
@@ -214,6 +217,55 @@ export default class VideoPage extends Component {
             });
     };
 
+    getCelebritiesRecomendations = () => {
+        this.setState(prevState => ({
+            getCelebritiesRecomendationsError: "",
+            isGettingCelebritiesRecomendations: true,
+        }));
+
+        return fetch(URI_GET_CELEBRITIES_RECOMENDATIONS/*, /*{
+         credentials: 'include',
+         mode: 'cors',
+         method: 'get',
+         headers: {
+         'Content-Type': 'application/json; charset=UTF-8',
+         'Authorization': access_token ? 'Bearer ' + access_token : ""
+         //'X-CSRFToken': CSRF_TOKEN
+         }
+         }*/)
+            .then(response => {
+                if (!response.ok)
+                    throw `Сталася помилка при отриманні інформації про рекомендації зірок(!response.ok)!`;
+
+                let contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1)
+                    return response.json();
+                else
+                    throw `Сталася помилка при отриманні інформації про рекомендації зірок: oтримано некоректні від сервера`;
+            })
+            .then(data => {
+                if (!(data.posts instanceof Array) || !data.posts[0])
+                    throw `Сталася помилка при отриманні інформації про рекомендації зірок: oтримано некоректні від сервера`;
+
+                this.setState({
+                    getCelebritiesRecomendationsError: "",
+                    isGettingCelebritiesRecomendations: false,
+                    celebritiesRecomendations: data.posts
+                });
+            })
+            .catch(error => {
+                if (error && error.message === "Failed to fetch")
+                    error = `Сталася неочікувана помилка при отриманні інформації про рекомендації зірок! Перевірте роботу мережі.`;
+                else if (!error || !(typeof error == "string"))
+                    error = `Сталася неочікувана помилка при отриманні інформації про рекомендації зірок!`;
+
+                this.setState(prevState => ({
+                    isGettingCelebritiesRecomendations: false,
+                    getCelebritiesRecomendationsError: error,
+                }));
+            });
+    };
+
     componentDidMount() {
         //Отримуємо інфу про це відео
         let videoId = this.props.params.videoid;
@@ -221,6 +273,8 @@ export default class VideoPage extends Component {
 
         //Отримуємо інфу про популярні відео
         this.getFeaturedVideos(this.state.numOfShowingFeaturedVideos);
+
+        this.getCelebritiesRecomendations();
     }
 
     componentWillUnmount() {
@@ -234,6 +288,8 @@ export default class VideoPage extends Component {
 
             //Отримуємо інфу про популярні відео
             this.getFeaturedVideos(this.state.numOfShowingFeaturedVideos);
+
+            this.getCelebritiesRecomendations();
         }
     }
 
