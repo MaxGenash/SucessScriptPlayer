@@ -38,7 +38,7 @@ export default function RecomendationsListFeatured(props) {
                             <span className="video-thumb-num">{dataItem.overallViews}</span>
                         </span>
                             <span className="video-thumb-descr" title="Кількість активних глядачів онлайн">
-                            <i className="fa fa-eye fa-1" aria-hidden="true"/>
+                            <i className="fa fa-users" aria-hidden="true"/>
                             <span className="video-thumb-num">{dataItem.activeViews}</span>
                         </span>
                         </div>

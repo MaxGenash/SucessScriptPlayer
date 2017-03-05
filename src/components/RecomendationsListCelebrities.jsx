@@ -3,7 +3,7 @@ import React, {Component} from "react";
 export default function RecomendationsListCelebrities(props) {
     let itemsList = props.listData.map((dataItem, i) => {
         return (
-            <li key={dataItem.key}>
+            <li key={dataItem.videoKey}>
                 <a href={`/videos/video/${dataItem.key}`} className="video-thumb">
                     <img src={dataItem.imgPosterSrc} alt="картинка-постер" className="video-tumb-img"/>
                     <div className="video-thumb-cont">
@@ -18,15 +18,14 @@ export default function RecomendationsListCelebrities(props) {
                         <span className="video-thumb-post">
                             {dataItem.comentText}
                         </span>
-                        <span className="video-thumb-descr">
-                            <span className="Дата публікації">
-                                {dataItem.postDate}
+                        <a className="post-link" href={dataItem.originalPostLink} target="_blank">
+                            <span title="Дата публікації">
+                                22.03.2017 {" "}
                             </span>
-                            {" "}
-                            <span className="Посилання на оригінал публікації">
-                                <a href={dataItem.originalPostLink}>L</a>
+                            <span title="Посилання на оригінал публікації">
+                                <i className="fa fa-vk" aria-hidden="true" />
                             </span>
-                        </span>
+                        </a>
                     </div>
                 </a>
             </li>

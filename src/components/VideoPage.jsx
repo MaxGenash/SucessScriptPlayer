@@ -57,7 +57,9 @@ export default class VideoPage extends Component {
                     originalPostLink: "https://vk.com/wall59654341_6826",
                     key: "ligaSmihu"
                 }
-            ]
+            ],
+
+            expandMomentsList: false
         };
     }
 
@@ -129,7 +131,6 @@ export default class VideoPage extends Component {
             });
     };
 
-
     componentDidMount() {
         //Отримуємо інфу про це відео
         let videoId = this.props.params.videoid;
@@ -170,44 +171,34 @@ export default class VideoPage extends Component {
         this.ws.close()
     }
 
+    toggleExpandMomentsList = () => {
+        this.setState(prevState => ({
+            expandMomentsList: !prevState.expandMomentsList
+        }));
+    };
+
     render() {
-        if (this.state.isGettingVideoInfo)
-            return (
-                <div className=''>
-                    Отримання інформації про відео...
-                </div>
-            );
-        else if (this.state.getVideoInfoSuccess && this.state.videoSrc && this.state.videoImgPoster && this.state.videoCaption)
-            return (
-                <div className="content-wrapper">
-                    <VideoColumn
-                        videoCaption={this.state.videoCaption}
-                        videoSrc={this.state.videoSrc}
-                        videoImgPoster={this.state.videoImgPoster}
-                        videoDescription={this.state.videoDescription}
-                        comments={this.state.videoComments}
-                    />
-                    <RecomendationsCol
-                        getFeaturedVideosError={this.state.getFeaturedVideosError}
-                        isGettingFeaturedVideos={this.state.isGettingFeaturedVideos}
-                        featuredVideos={this.state.featuredVideos}
-                        celebritiesRecomendations={this.state.celebritiesRecomendations}
-                    />
-                </div>
-            );
-        else if (this.state.getVideoInfoError)
-            return (
-                <div className='video-wrapper'>
-                    При отриманні інформації про відео сталася помилка:
-                    <br/>
-                    {this.state.getVideoInfoError}
-                </div>
-            );
-        else
-            return (
-                <div className='video-wrapper'>
-                    При отриманні інформації про відео сталася невідома помилка :(
-                </div>
-            );
+        return (
+            <div className="content-wrapper">
+                <VideoColumn
+                    isGettingVideoInfo={this.state.isGettingVideoInfo}
+                    getVideoInfoSuccess={this.state.getVideoInfoSuccess}
+                    getVideoInfoError={this.state.getVideoInfoError}
+                    videoCaption={this.state.videoCaption}
+                    videoSrc={this.state.videoSrc}
+                    videoImgPoster={this.state.videoImgPoster}
+                    toggleExpandMomentsList={this.toggleExpandMomentsList}
+                    expandMomentsList={this.state.expandMomentsList}
+                    videoDescription={this.state.videoDescription}
+                    comments={this.state.videoComments}
+                />
+                <RecomendationsCol
+                    getFeaturedVideosError={this.state.getFeaturedVideosError}
+                    isGettingFeaturedVideos={this.state.isGettingFeaturedVideos}
+                    featuredVideos={this.state.featuredVideos}
+                    celebritiesRecomendations={this.state.celebritiesRecomendations}
+                />
+            </div>
+        );
     }
 }
