@@ -36,7 +36,7 @@ export default function RecomendationsListCelebrities(props) {
     return (
         <div className="recomendation-videos recomendation-videos--stars">
             <h2 className="recomendation-title">
-                Рекомендації зірок:
+                Зірки рекомендують:
             </h2>
             <ul className="videos-list">
                 {itemsList}

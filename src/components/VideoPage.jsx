@@ -228,9 +228,13 @@ export default class VideoPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //Отримуємо інфу про це відео
-        if(nextProps.params.videoid !== this.props.params.videoid)
+        if(nextProps.params.videoid !== this.props.params.videoid) {
+            //Отримуємо інфу про це відео
             this.getVideoInfoById(nextProps.params.videoid);
+
+            //Отримуємо інфу про популярні відео
+            this.getFeaturedVideos(this.state.numOfShowingFeaturedVideos);
+        }
     }
 
     toggleExpandMomentsList = () => {
