@@ -7,7 +7,7 @@ export default class VideoColumn extends Component {
     render() {
         if (this.props.isGettingVideoInfo)
             return (
-                <div className="video-wrapper">
+                <div className="video-wrapper" key={1}>
                     <div className="loading">
                         <i className="fa fa-spin fa-spinner fa-5x fa-fw" aria-hidden="true" />
                     </div>
@@ -15,12 +15,13 @@ export default class VideoColumn extends Component {
             );
         else if (this.props.getVideoInfoSuccess && this.props.videoSrc && this.props.videoImgPoster && this.props.videoCaption)
             return (
-                <div className="video-wrapper">
+                <div className="video-wrapper"  key={2}>
                     <h1>
                         {this.props.videoCaption}
                     </h1>
                     <VideoPlayer
                         setVideoJsInstance={this.props.setVideoJsInstance}
+                        removeVideoJsInstance={this.props.removeVideoJsInstance}
                         videoSrc={this.props.videoSrc}
                         videoImgPoster={this.props.videoImgPoster}
                     />
@@ -45,7 +46,7 @@ export default class VideoColumn extends Component {
             );
         else if (this.props.getVideoInfoError)
             return (
-                <div className='video-wrapper'>
+                <div className='video-wrapper' key={3}>
                     При отриманні інформації про відео сталася помилка:
                     <br/>
                     {this.props.getVideoInfoError}
@@ -53,7 +54,7 @@ export default class VideoColumn extends Component {
             );
         else
             return (
-                <div className='video-wrapper'>
+                <div className='video-wrapper'> key={4}
                     При отриманні інформації про відео сталася невідома помилка :(
                 </div>
             );

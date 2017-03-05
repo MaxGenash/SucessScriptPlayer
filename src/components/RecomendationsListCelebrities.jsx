@@ -1,10 +1,11 @@
 import React, {Component} from "react";
+import NavLink from "./NavLink.jsx"
 
 export default function RecomendationsListCelebrities(props) {
     let itemsList = props.listData.map((dataItem, i) => {
         return (
             <li key={dataItem.videoKey}>
-                <a href={`/videos/video/${dataItem.key}`} className="video-thumb">
+                <NavLink to={`/videos/video/${dataItem.key}`} className="video-thumb" >
                     <img src={dataItem.previewUri} alt="картинка-постер" className="video-tumb-img"/>
                     <div className="video-thumb-cont">
                         <span className="video-thumb-star">
@@ -27,7 +28,7 @@ export default function RecomendationsListCelebrities(props) {
                             </span>
                         </a>
                     </div>
-                </a>
+                </NavLink>
             </li>
         );
     });

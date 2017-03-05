@@ -28,6 +28,26 @@ export default class VideoPage extends Component {
                 //     time: 857,
                 //     imgThumbUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA"
                 // },
+                // {
+                //     title: 'Виступ команди "Отдыхаем вместе"',
+                //     time: 1457,
+                //     imgThumbUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA"
+                // },
+                // {
+                //     title: 'Виступ команди "Луганская сборная"',
+                //     time: 2115,
+                //     imgThumbUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA"
+                // },
+                // {
+                //     title: 'Виступ команди "Авторы"',
+                //     time: 2521,
+                //     imgThumbUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA"
+                // },
+                // {
+                //     title: 'Виступ команди "Тяп-ляп"',
+                //     time: 3663,
+                //     imgThumbUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA"
+                // },
             ],
 
             videoJsInstance: null,
@@ -52,20 +72,20 @@ export default class VideoPage extends Component {
 
             celebritiesRecomendations: [
                 {
-                    previewUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    previewUri: "https://images.ovva.tv/media/images/543/e7f/b33/543e7fb33c0056175cdee83ebf047b45.jpeg",
                     celebrityName: "Джамала",
                     comentText: "Дивіться новий випуск голоса країни та голосуйте за моїх учасників 💋💋💋",
-                    celebrityAvatar: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
                     postDate: "04.03.2017",
                     originalPostLink: "https://vk.com/wall59654341_6826",
-                    videoKey: "golos"
+                    key: "golos"
                 },
                 {
-                    previewUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    previewUri: "https://images.ovva.tv/media/images/fff/45d/647/fff45d647b4367df529a5270c7c8d5b6.jpeg",
                     title: "Лига Смеха 2016 - второй фестиваль, Одесса, часть первая",
                     celebrityName: "Володимир Зеленський",
                     comentText: "Сьогодні подивився новий випуск ліги сміху - ото ржака 😆😆😆",
-                    celebrityAvatar: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    celebrityAvatar: "https://pp.userapi.com/c636531/v636531341/35127/TQ4CUXD1XaA.jpg",
                     postDate: "02.03.2017",
                     originalPostLink: "https://vk.com/wall59654341_6826",
                     key: "ligaSmihu"
@@ -116,7 +136,7 @@ export default class VideoPage extends Component {
                     videoCaption: data.videos[0].title,
                     videoDescription: data.videos[0].description,
                     videoPublicationDate: data.videos[0].datePost,
-                    videoMomentsList: data.videos[0].videoMomentsList
+                    videoMomentsList: data.videos[0].videoMoments
                 }));
 
                 // var a = {
@@ -207,6 +227,12 @@ export default class VideoPage extends Component {
         this.ws.close()
     }
 
+    componentWillReceiveProps(nextProps) {
+        //Отримуємо інфу про це відео
+        if(nextProps.params.videoid !== this.props.params.videoid)
+            this.getVideoInfoById(nextProps.params.videoid);
+    }
+
     toggleExpandMomentsList = () => {
         this.setState(prevState => ({
             expandMomentsList: !prevState.expandMomentsList
@@ -215,6 +241,10 @@ export default class VideoPage extends Component {
 
     setVideoJsInstance = (videoJsInstance) => {
         this.videoJsInstance = videoJsInstance;
+    };
+
+    removeVideoJsInstance = () => {
+        this.videoJsInstance.dispose();
     };
 
     scrollVideoToTime = (time) => {
@@ -226,6 +256,7 @@ export default class VideoPage extends Component {
             <div className="content-wrapper">
                 <VideoColumn
                     setVideoJsInstance={this.setVideoJsInstance}
+                    removeVideoJsInstance={this.removeVideoJsInstance}
                     scrollVideoToTime={this.scrollVideoToTime}
                     isGettingVideoInfo={this.state.isGettingVideoInfo}
                     getVideoInfoSuccess={this.state.getVideoInfoSuccess}

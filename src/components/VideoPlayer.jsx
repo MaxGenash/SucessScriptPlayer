@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import videojs from 'video.js'
 //import "../../node_modules/videojs-vjsdownload/dist/videojs-vjsdownload.js"
 //import "../../node_modules/videojs-vjsdownload/dist/videojs-vjsdownload.css"
+//import "../../node_modules/videojs-hotkeys/videojs.hotkeys"
 
 export default class VideoPlayer extends Component {
     componentDidMount() {
@@ -24,7 +25,20 @@ export default class VideoPlayer extends Component {
                 });
             }
         );
+        // playerInstance.hotkeys({
+        //     volumeStep: 0.1,
+        //     seekStep: 5,
+        //     enableModifiersForNumbers: false
+        // });
         this.props.setVideoJsInstance(playerInstance);
+    }
+
+    // destroy player on unmount
+    componentWillUnmount() {
+        this.props.removeVideoJsInstance();
+        if (this.player) {
+            this.player.dispose()
+        }
     }
 
     render() {

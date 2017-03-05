@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import NavLink from "./NavLink.jsx"
 
 export default function RecomendationsListFeatured(props) {
     if(props.isGettingFeaturedVideos)
@@ -22,12 +23,11 @@ export default function RecomendationsListFeatured(props) {
                 </div>
             </div>
         );
-    }
-    else {
+    } else {
         let itemsList = props.listData.map((dataItem, i) => {
             return (
                 <li key={dataItem.key}>
-                    <a href={`/videos/video/${dataItem.key}`} className="video-thumb">
+                    <NavLink to={`/videos/video/${dataItem.key}`} className="video-thumb" >
                         <img src={dataItem.previewUri} alt="картинка-постер" className="video-tumb-img"/>
                         <div className="video-thumb-cont">
                             <span className="video-thumb-title" title={dataItem.title}>
@@ -40,11 +40,11 @@ export default function RecomendationsListFeatured(props) {
                                 </span>
                             </span>
                             {/*<span className="video-thumb-descr" title="Кількість активних глядачів онлайн">*/}
-                                {/*<i className="fa fa-users" aria-hidden="true"/>*/}
-                                {/*<span className="video-thumb-num">{dataItem.activeViews}</span>*/}
+                            {/*<i className="fa fa-users" aria-hidden="true"/>*/}
+                            {/*<span className="video-thumb-num">{dataItem.activeViews}</span>*/}
                             {/*</span>*/}
                         </div>
-                    </a>
+                    </NavLink>
                 </li>
             );
         });
