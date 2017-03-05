@@ -505,6 +505,12 @@ textarea {
     overflow: hidden;
 }
 
+
+.recomendations-wrapper .error-alert {
+    max-width: 300px;
+}
+
+
 .comments-wrapper {
     /*display: flex;*/
     /*justify-content: flex-start;*/

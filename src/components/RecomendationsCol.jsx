@@ -6,6 +6,8 @@ export default function RecomendationsCol(props) {
     return (
         <div className="recomendations-wrapper">
             <RecomendationsListFeatured
+                getFeaturedVideosError={props.getFeaturedVideosError}
+                isGettingFeaturedVideos={props.isGettingFeaturedVideos}
                 listData={props.featuredVideos}
             />
             <RecomendationsListCelebrities
