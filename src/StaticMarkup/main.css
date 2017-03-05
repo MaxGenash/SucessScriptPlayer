@@ -412,7 +412,13 @@ textarea {
     *Page styles
 */
 
-.wrapper {}
+.loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
 
 .content-wrapper {
     padding: 20px;
@@ -421,11 +427,13 @@ textarea {
 }
 
 .video-wrapper {
+    position: relative;
     flex: 1;
     padding: 10px;
 }
 
 .recomendations-wrapper {
+    position: relative;
     padding: 10px;
 }
 
@@ -446,6 +454,14 @@ textarea {
     display: flex;
     padding: 5px;
     font-size: 16px;
+}
+
+.video-thumb--moment {
+    font-size: 14px;
+}
+
+.video-thumb-num--moment {
+    color: pointer;
 }
 
 .video-tumb-img {
@@ -505,6 +521,10 @@ textarea {
     overflow: hidden;
 }
 
+.post-link:hover {
+    color: #4671c5;
+}
+
 .comments-wrapper {
     display: flex;
     justify-content: center;
@@ -518,20 +538,51 @@ textarea {
     overflow-y: auto;
 }
 
+.description-wrapper {
+    width: 100%;
+    padding: 15px;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.addit-inform-wrapper {
+    padding-top: 20px;
+    width: 100%;
+}
+
+.toggle-info {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 20px;
+}
+
+/*.toggle-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}*/
+
+.list-info {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    transition: 1s;
+}
+
+.list-info.is-opened {
+    max-height: 300px;
+    
+}
+
 .header {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    -js-display: flex;
     display: flex;
     background-color: #212121;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     z-index: 100;
     height: 92px;
