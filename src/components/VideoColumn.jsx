@@ -33,14 +33,14 @@ export default class VideoColumn extends Component {
                     <VideoDescription
                         videoDescription={this.props.videoDescription}
                     />
-                    <section className="comments-wrapper">
-                        <p>
-                            <b>Коментарі:</b>
-                        </p>
-                        <div className="comments">
-                            {this.props.comments}
-                        </div>
-                    </section>
+                    {/*<section className="comments-wrapper">*/}
+                        {/*<p>*/}
+                            {/*<b>Коментарі:</b>*/}
+                        {/*</p>*/}
+                        {/*<div className="comments">*/}
+                            {/*{this.props.comments}*/}
+                        {/*</div>*/}
+                    {/*</section>*/}
                 </div>
             );
         else if (this.props.getVideoInfoError)
