@@ -1,13 +1,30 @@
 import React, { Component } from 'react'
 import videojs from 'video.js'
+//import "../../node_modules/videojs-vjsdownload/dist/videojs-vjsdownload.js"
+//import "../../node_modules/videojs-vjsdownload/dist/videojs-vjsdownload.css"
 
 export default class VideoPlayer extends Component {
     componentDidMount() {
-        videojs('ss-player__video', {
-            controls: true,
-            autoplay: false,
-            preload: 'auto'
-        });
+        let playerInstance = videojs('ss-player__video', {
+                controls: true,
+                autoplay: false,
+                preload: 'auto',
+                // plugins: {
+                //     vjsdownload: {
+                //         beforeElement: 'playbackRateMenuButton',
+                //         textControl: 'Download video',
+                //         name: 'downloadButton'
+                //     }
+                // }
+            },
+            function() {
+                console.log('Callback video-js initiated');
+                this.on('downloadvideo', function () {
+                    console.log('downloadvideo triggered');
+                });
+            }
+        );
+        this.props.setVideoJsInstance(playerInstance);
     }
 
     render() {

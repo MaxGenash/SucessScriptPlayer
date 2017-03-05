@@ -20,10 +20,13 @@ export default class VideoColumn extends Component {
                         {this.props.videoCaption}
                     </h1>
                     <VideoPlayer
+                        setVideoJsInstance={this.props.setVideoJsInstance}
                         videoSrc={this.props.videoSrc}
                         videoImgPoster={this.props.videoImgPoster}
                     />
                     <VideoMomentsList
+                        videoMomentsList={this.props.videoMomentsList}
+                        scrollVideoToTime={this.props.scrollVideoToTime}
                         toggleExpandMomentsList={this.props.toggleExpandMomentsList}
                         expandMomentsList={this.props.expandMomentsList}
                     />
