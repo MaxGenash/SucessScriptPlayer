@@ -5,17 +5,17 @@ export default function RecomendationsListCelebrities(props) {
         return (
             <li key={dataItem.videoKey}>
                 <a href={`/videos/video/${dataItem.key}`} className="video-thumb">
-                    <img src={dataItem.imgPosterSrc} alt="картинка-постер" className="video-tumb-img"/>
+                    <img src={dataItem.previewUri} alt="картинка-постер" className="video-tumb-img"/>
                     <div className="video-thumb-cont">
                         <span className="video-thumb-star">
                             <div className="avatar-wrap">
                                 <img className="video-thumb-avatar" src={dataItem.celebrityAvatar} alt="фото зірки"/>
                             </div>
-                            <span className="video-thumb-star-name">
+                            <span className="video-thumb-star-name" title={dataItem.celebrityName}>
                                 {dataItem.celebrityName}
                             </span>
                         </span>
-                        <span className="video-thumb-post">
+                        <span className="video-thumb-post" title={dataItem.comentText}>
                             {dataItem.comentText}
                         </span>
                         <a className="post-link" href={dataItem.originalPostLink} target="_blank">

@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import VideoColumn from './VideoColumn.jsx'
 import RecomendationsCol from './RecomendationsCol.jsx'
-import {URI_GET_VIDEO_INFO} from '../constants/API_URIs'
+import {
+    URI_GET_VIDEO_INFO,
+    URI_GET_FEATURED_VIDEOS
+} from '../constants/API_URIs'
 
 export default class VideoPage extends Component {
     constructor(props) {
@@ -29,17 +32,18 @@ export default class VideoPage extends Component {
             numOfShowingFeaturedVideos: 3,
             featuredVideos: [
                 // {
-                //     imgPosterSrc: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                //     previewUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
                 //     overallViews: 17500,
                 //     activeViews: 875,
                 //     title: "Голос країни 7 сезон 6 випуск за 26 лютого 2017 року",
                 //     key: "golos"
                 // }
+
             ],
 
             celebritiesRecomendations: [
                 {
-                    imgPosterSrc: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    previewUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
                     celebrityName: "Джамала",
                     comentText: "Дивіться новий випуск голоса країни та голосуйте за моїх учасників 💋💋💋",
                     celebrityAvatar: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
@@ -48,7 +52,7 @@ export default class VideoPage extends Component {
                     videoKey: "golos"
                 },
                 {
-                    imgPosterSrc: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
+                    previewUri: "https://1drv.ms/i/s!Ah55HJR0qRwUh6JTu2SXrrsSmvtlpA",
                     title: "Лига Смеха 2016 - второй фестиваль, Одесса, часть первая",
                     celebrityName: "Володимир Зеленський",
                     comentText: "Сьогодні подивився новий випуск ліги сміху - ото ржака 😆😆😆",
@@ -131,40 +135,62 @@ export default class VideoPage extends Component {
             });
     };
 
+    getFeaturedVideos = (numOfShowingFeaturedVideos) => {
+        this.setState(prevState => ({
+            getFeaturedVideosError: "",
+            isGettingFeaturedVideos: true,
+        }));
+
+        return fetch(URI_GET_FEATURED_VIDEOS + numOfShowingFeaturedVideos/*, /*{
+         credentials: 'include',
+         mode: 'cors',
+         method: 'get',
+         headers: {
+         'Content-Type': 'application/json; charset=UTF-8',
+         'Authorization': access_token ? 'Bearer ' + access_token : ""
+         //'X-CSRFToken': CSRF_TOKEN
+         }
+         }*/)
+            .then(response => {
+                if (!response.ok)
+                    throw `Сталася помилка при отриманні інформації про популярні відеозаписи(!response.ok)!`;
+
+                let contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1)
+                    return response.json();
+                else
+                    throw `Сталася помилка при отриманні інформації про популярні відеозаписи: oтримано некоректні від сервера`;
+            })
+            .then(data => {
+                if (!(data.videos instanceof Array) || !data.videos[0])
+                    throw `Сталася помилка при отриманні інформації про популярні відеозаписи: oтримано некоректні від сервера`;
+
+                this.setState({
+                    getFeaturedVideosError: "",
+                    isGettingFeaturedVideos: false,
+                    featuredVideos: data.videos
+                });
+            })
+            .catch(error => {
+                if (error && error.message === "Failed to fetch")
+                    error = `Сталася неочікувана помилка при отриманні інформації про популярні відеозаписи! Перевірте роботу мережі.`;
+                else if (!error || !(typeof error == "string"))
+                    error = `Сталася неочікувана помилка при отриманні інформації про популярні відеозаписи!`;
+
+                this.setState(prevState => ({
+                    isGettingFeaturedVideos: false,
+                    getFeaturedVideosError: error,
+                }));
+            });
+    };
+
     componentDidMount() {
         //Отримуємо інфу про це відео
         let videoId = this.props.params.videoid;
         this.getVideoInfoById(videoId);
 
         //Отримуємо інфу про популярні відео
-        this.ws = new WebSocket(`ws://video-service.azurewebsites.net/api/recomendations/featured/${this.state.numOfShowingFeaturedVideos}`);
-        this.ws.onmessage = e => {
-            try {
-                let featuredVideos = JSON.parse(e.data);
-                this.setState({
-                    getFeaturedVideosError: "",
-                    isGettingFeaturedVideos: false,
-                    featuredVideos
-                });
-            } catch (e) {
-                this.setState({
-                    isGettingFeaturedVideos: false,
-                    getFeaturedVideosError: 'Сталася помилка при спробі обробити подію WebSocket.onmessage. ' + e.message || e || ""
-                });
-            }
-        };
-        this.ws.onerror = e => {
-            this.setState({
-                isGettingFeaturedVideos: false,
-                getFeaturedVideosError: 'Сталася помилка при отриманні інформації про популярні відеозаписи - WebSocket error! ' + e.code || ""
-            });
-        };
-        this.ws.onclose = e => {
-            !e.wasClean && this.setState({
-                isGettingFeaturedVideos: false,
-                getFeaturedVideosError: `Сталася помилка при отриманні інформації про популярні відеозаписи - WebSocket error: ${e.code} ${e.reason}`
-            });
-        }
+        this.getFeaturedVideos(this.state.numOfShowingFeaturedVideos);
     }
 
     componentWillUnmount() {
