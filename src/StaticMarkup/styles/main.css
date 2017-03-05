@@ -14,8 +14,8 @@
 
 @font-face {
     font-family: "HelveticaRegular";
-    src: url("./fonts/HelveticaRegular.eot");
-    src: url("./fonts/HelveticaRegular.eot?#iefix")format("embedded-opentype"), url("./fonts/HelveticaRegular.woff") format("woff"), url("./fonts/HelveticaRegular.ttf") format("truetype");
+    src: url("../fonts/HelveticaRegular.eot");
+    src: url("../fonts/HelveticaRegular.eot?#iefix")format("embedded-opentype"), url("../fonts/HelveticaRegular.woff") format("woff"), url("../fonts/HelveticaRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
@@ -461,7 +461,7 @@ textarea {
 }
 
 .video-thumb-num--moment {
-    color: pointer;
+    cursor: pointer;
 }
 
 .video-tumb-img {
@@ -525,19 +525,23 @@ textarea {
     color: #4671c5;
 }
 
+.recomendations-wrapper .error-alert {
+    max-width: 300px;
+}
+
+
 .comments-wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
+    /*padding: 30px;*/
     /*margin: auto;*/
 }
 
 .comments {
-    max-height: 500px;
-    width: 500px;
-    overflow-y: auto;
+    /*max-height: 500px;*/
+    /*width: 500px;*/
+    /*overflow-y: auto;*/
 }
-
 .description-wrapper {
     width: 100%;
     padding: 15px;
@@ -574,7 +578,7 @@ textarea {
 
 .list-info.is-opened {
     max-height: 300px;
-    
+    overflow-y: auto;
 }
 
 .header {
