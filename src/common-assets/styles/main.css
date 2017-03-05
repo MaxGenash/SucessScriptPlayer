@@ -472,7 +472,7 @@ textarea {
     display: flex;
     flex-direction: column;
     padding: 0 0.25em;
-    width: 12.5em;
+    width: 14em;
     height: 6.5em;
 }
 
@@ -515,7 +515,7 @@ textarea {
 }
 
 .video-thumb-post {
-    height: 4em;
+    height: 3em;
     line-height: 1em;
     padding-top: 0.25em;
     overflow: hidden;
