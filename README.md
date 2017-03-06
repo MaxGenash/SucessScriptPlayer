@@ -1,5 +1,5 @@
 # SuccessScriptPlayer
-*It is the front-end pard of our project from int20h hackathon*
+*It is the front-end part of our project from int20h 2017 hackathon*
 
 ### Description:
 Video player with such features:
